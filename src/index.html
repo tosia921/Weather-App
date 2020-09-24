@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4858441be9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1 class="title">Weather App</h1>
+        <div class="inputField">
+            <input class="inputField__search" type="text">
+            <button class="inputField__submit"><i class="fas fa-location-arrow"></i></button>
+            <button class="inputField__geo"><i class="fas fa-map-marker-alt"></i></button>
+        </div>
+
+        <div class="weatherApp">
+            <div class="weatherApp__current">
+                <div class="weatherApp__current__content">
+                    <div class="weatherApp__current__content__left">
+                        <div class="weatherApp__current__content__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__current__content__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__current__content__right--location">PARIS</div>
+                        <div class="weatherApp__current__content__right--date">Monday, 4th May</div>
+                        <div class="weatherApp__current__content__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="weatherApp__FortyEigthHours">
+                <canvas id="myChart" class="canvasContainer"></canvas>
+                <div class="weatherApp__FortyEigthHours__labelsContainer">
+                    <div class="weatherApp__FortyEigthHours__labelsContainer--day1">
+                        <p class="weatherApp__FortyEigthHours__labelsContainer__date">21.12.2020</p>
+                        <div class="weatherApp__FortyEigthHours__labelsContainer--day1--imgTemp">
+                            <span>25&deg;</span>
+                            <img class="weather_icon" src="./images/weatherIcons/animated/rainy-1.svg" alt="sdsd">
+                        </div>
+                    </div>
+                    <div class="weatherApp__FortyEigthHours__labelsContainer--day2">
+                        <p class="weatherApp__FortyEigthHours__labelsContainer__date">21.12.2020</p>
+                        <div class="weatherApp__FortyEigthHours__labelsContainer--day2--imgTemp">
+                            <span>25&deg;</span>
+                            <img class="weather_icon" src="./images/weatherIcons/animated/rainy-1.svg" alt="sdsd">
+                        </div>
+                    </div>
+                    <div class="weatherApp__FortyEigthHours__labelsContainer--day3">
+                        <p class="weatherApp__FortyEigthHours__labelsContainer__date">21.12.2020</p>
+                        <div class="weatherApp__FortyEigthHours__labelsContainer--day3--imgTemp">
+                            <span>25&deg;</span>
+                            <img class="weather_icon" src="./images/weatherIcons/animated/rainy-1.svg" alt="sdsd">
+                        </div>
+                    </div>
+                    <div class="weatherApp__FortyEigthHours__labelsContainer--day4">
+                        <p class="weatherApp__FortyEigthHours__labelsContainer__date">21.12.2020</p>
+                        <div class="weatherApp__FortyEigthHours__labelsContainer--day4--imgTemp">
+                            <span>25&deg;</span>
+                            <img class="weather_icon" src="./images/weatherIcons/animated/rainy-1.svg" alt="sdsd">
+                        </div>
+                    </div>
+                    <div class="weatherApp__FortyEigthHours__labelsContainer--day5">
+                        <p class="weatherApp__FortyEigthHours__labelsContainer__date">21.12.2020</p>
+                        <div class="weatherApp__FortyEigthHours__labelsContainer--day5--imgTemp">
+                            <span>25&deg;</span>
+                            <img class="weather_icon" src="./images/weatherIcons/animated/rainy-1.svg" alt="sdsd">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="weatherApp__oneWeek">
+                <div class="weatherApp__oneWeek__box weatherApp__oneWeek__box1">
+                    <div class="weatherApp__oneWeek__box1__left">
+                        <div class="weatherApp__oneWeek__box1__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__oneWeek__box1__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__oneWeek__box1__right--day">Monday</div>
+                        <div class="weatherApp__oneWeek__box1__right--date">4th May</div>
+                        <div class="weatherApp__oneWeek__box1__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+                <div class="weatherApp__oneWeek__box weatherApp__oneWeek__box2">
+                    <div class="weatherApp__oneWeek__box2__left">
+                        <div class="weatherApp__oneWeek__box2__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__oneWeek__box2__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__oneWeek__box2__right--day">Tuesday</div>
+                        <div class="weatherApp__oneWeek__box2__right--date">4th May</div>
+                        <div class="weatherApp__oneWeek__box2__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+                <div class="weatherApp__oneWeek__box weatherApp__oneWeek__box3">
+                    <div class="weatherApp__oneWeek__box3__left">
+                        <div class="weatherApp__oneWeek__box3__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__oneWeek__box3__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__oneWeek__box3__right--day">Wednesday</div>
+                        <div class="weatherApp__oneWeek__box3__right--date">4th May</div>
+                        <div class="weatherApp__oneWeek__box3__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+                <div class="weatherApp__oneWeek__box weatherApp__oneWeek__box4">
+                    <div class="weatherApp__oneWeek__box4__left">
+                        <div class="weatherApp__oneWeek__box4__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__oneWeek__box4__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__oneWeek__box4__right--day">Thursday</div>
+                        <div class="weatherApp__oneWeek__box4__right--date">4th May</div>
+                        <div class="weatherApp__oneWeek__box4__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+                <div class="weatherApp__oneWeek__box weatherApp__oneWeek__box5">
+                    <div class="weatherApp__oneWeek__box5__left">
+                        <div class="weatherApp__oneWeek__box5__left--img">
+                            <img src="./images/weatherIcons/animated/day.svg" alt="sdsd">
+                        </div>
+                        <div class="weatherApp__oneWeek__box5__left--weatherCondition">Sunny</div>
+                    </div>
+                    <div class="weatherApp__current__content__right">
+                        <div class="weatherApp__oneWeek__box5__right--day">Friday</div>
+                        <div class="weatherApp__oneWeek__box5__right--date">4th May</div>
+                        <div class="weatherApp__oneWeek__box5__right--temp">30&deg;C</div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+    </div>
+    
+</body>
+</html>
+
+
+<!-- <a href="https://www.vecteezy.com/free-vector/weather-background">Weather Background Vectors by Vecteezy</a> -->
+
+   
