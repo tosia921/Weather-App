@@ -1,6 +1,45 @@
 import './styles/main.scss';
 import Chart from 'chart.js';
 
+const apiKey = 'c9e3c239980a443441df591c707917dc';
+
+const geoBtn = document.querySelector('.inputField__geo');
+
+geoBtn.addEventListener('click', ()=> {
+    let long;
+    let lat;
+
+    if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(position => {
+        long = position.coords.longitude;
+        lat = position.coords.latitude;
+        
+    });
+        
+    apiCall();
+    }
+
+});
+
+function apiCall (lat, long) {
+    const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=current,hourly,daily&appid={${apiKey}}`;
+    console.log(api);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////// CHART CANVAS ////////////////////////
+
 var ctx = document.getElementById('myChart').getContext('2d');
 
 
@@ -10,14 +49,14 @@ Chart.defaults.global.defaultFontSize = 15;
 var myChart = new Chart(ctx, {
     type: "line",
     data: {
-        labels: [22, 15, 5, 8, 18],
+        labels: ["1h",2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
         datasets: [
             {
                 label: "Temp:",
                 backgroundColor: "rgba(234,99,148,0.2)",
                 borderColor: "rgba(234,99,148,1)",
                 borderWidth: 2,
-                data: [22, -15, 5, 8, 18],
+                data: [22, 15, 5, 8, 18, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 9],
             },
         ],
     },
@@ -42,7 +81,7 @@ var myChart = new Chart(ctx, {
                   },
                 scaleLabel: true,
                 ticks: {
-                    display: false
+                    display: true
                     }
                 
             }],
