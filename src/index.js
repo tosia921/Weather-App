@@ -1,58 +1,33 @@
 import "./styles/main.scss";
 import Chart from "chart.js";
 
-// const apiKey = 'c9e3c239980a443441df591c707917dc';
+////// API CALL /////
 
-// const geoBtn = document.querySelector('.inputField__geo');
+// const apiKey = "c9e3c239980a443441df591c707917dc";
 
-// geoBtn.addEventListener('click', ()=> {
-//     let long;
-//     let lat;
+// const geoBtn = document.querySelector(".inputField__geo");
 
-//     if (navigator.geolocation){
-//         navigator.geolocation.getCurrentPosition(position => {
-//             long = position.coords.longitude;
-//             lat = position.coords.latitude;
+// geoBtn.addEventListener("click", () => {
+// 	let long;
+// 	let lat;
 
-//             const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
-//             // console.log(api);
+// 	if (navigator.geolocation) {
+// 		navigator.geolocation.getCurrentPosition((position) => {
+// 			long = position.coords.longitude;
+// 			lat = position.coords.latitude;
 
-//             fetch(api)
-//             .then(response => {
-//                 return response.json();
-//             })
-//             .then(data => {
-//                 console.log(data);
-//             });
-//         });
-//     }
+// 			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
+// 			// console.log(api);
+
+// 			async function getWeather() {
+// 				const result = await fetch(api);
+// 				const data = await result.json();
+// 				console.log(data);
+// 			}
+// 			getWeather();
+// 		});
+// 	}
 // });
-
-const apiKey = "c9e3c239980a443441df591c707917dc";
-
-const geoBtn = document.querySelector(".inputField__geo");
-
-geoBtn.addEventListener("click", () => {
-	let long;
-	let lat;
-
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			long = position.coords.longitude;
-			lat = position.coords.latitude;
-
-			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
-			// console.log(api);
-
-			async function getWeather() {
-				const result = await fetch(api);
-				const data = await result.json();
-				console.log(data);
-			}
-			getWeather();
-		});
-	}
-});
 
 /////////////////// CHART CANVAS ////////////////////////
 
