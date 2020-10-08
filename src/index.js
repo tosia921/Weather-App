@@ -7,10 +7,17 @@ const apiKey = "c9e3c239980a443441df591c707917dc";
 
 const geoBtn = document.querySelector(".searchBar__inputField__geoBtn");
 
+let setIcon = (id) => {
+
+}
+
 
 geoBtn.addEventListener("click", () => {
 	let long;
 	let lat;
+	const CurrentWeatherCondition = document.querySelector('.currentWeather__info--WeatherCondition');
+	const CurrentDate = document.querySelector('.currentWeather__info--date');
+	const CurrentTemp = document.querySelector('.currentWeather__info--temp');
 
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition((position) => {
@@ -20,18 +27,26 @@ geoBtn.addEventListener("click", () => {
 			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
 
 
-			async function getWeather() {
-				const result = await fetch(api);
-				const data = await result.json();
-				console.log(data);
-			}
-			getWeather();
-			console.log(api);
-
+			fetch(api)
+				.then(response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data);
+					const temp = Math.round(data.current.temp - 273.15) + "°C";
+					const description = data.current.weather[0].description;
+					const date = new Date().toDateString();
+					CurrentWeatherCondition.innerHTML = description;
+					CurrentDate.innerHTML = date;
+					CurrentTemp.innerHTML = temp;
+				});
 		});
-
 	}
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 // const apiKey = 'c9e3c239980a443441df591c707917dc';
 
