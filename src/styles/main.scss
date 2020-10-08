@@ -29,31 +29,62 @@ img {
 
 ///////// VARIABLES //////////////
 
-$text-color: black;
+$text-color:rgb(250, 241, 241);
+$text-shadow: 1px 1px 6px #000000;
 
+$icon-shadow: drop-shadow(1px 1px 6px #000000);
+// rgb(38,188,255);
+// linear-gradient(97deg, rgba(38,188,255,1) 0%, rgba(0,174,252,1) 100%);
 $box-backgroundColor: rgb(245, 245, 245);
-
+$gradient-blue: linear-gradient(97deg, rgba(38,188,255,1) 0%, rgba(0,174,252,1) 100%);
+// linear-gradient(97deg, rgba(93,205,255,1) 0%, rgba(30,181,249,1) 100%);
 ////////// MIXINS ///////////
 
 @mixin gridBoxStyles {
 	height: 100%;
 	width: 100%;
-	background-color: $box-backgroundColor;
+	background: $gradient-blue;
 	box-shadow: 3px 3px 10px rgb(105, 105, 105);
 	border-radius: 20px;
 	padding: 0 3rem;
+	
   }
+@mixin dayWeatherBoxStyles {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+@mixin daysWeatherIconStyles {
+	height: 7rem;
+	width: auto;
+	filter: $icon-shadow;
+}
+@mixin daysWeatherWeatherConditionStyles {
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+@mixin daysWeatherDateStyles {
+	font-size: 1rem;
+}
+
+@mixin daysWeatherTempStyles {
+	font-size: 3rem
+}
+
 
 
 ///////// GRID WRAPPER /////////
 body {
-	background-color: lightblue;
+	background-color: #aeebff;
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	height: 100vh;
 	width: 100vw;
 	padding: 2rem 2rem;
+	font-family: 'Fredoka One', cursive;
+	color: $text-color;
+	text-shadow: $text-shadow;
 }
 .Grid-wrapper {
 	height: 95%;
@@ -96,7 +127,8 @@ body {
 .currentWeather {
 	grid-area: currentWeather;
 	@include gridBoxStyles;
-	
+	background: rgb(93,205,255);
+    background: $gradient-blue;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -104,6 +136,7 @@ body {
 		margin-right: 2rem;
 		height: 15rem;
 		width: auto;
+		filter: $icon-shadow;
 	}
 	&__info {
 		margin-left: 2rem;
@@ -123,6 +156,8 @@ body {
 .HoursForecast {
 	grid-area: hourforecast;
 	@include gridBoxStyles;
+	background: rgb(243, 243, 243);
+	
 	position: relative;
 	&__canvasContainer {
 		grid-area: hourforecast;
@@ -138,6 +173,7 @@ body {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	font-size: 2rem;
 	&--humidity {
 	}
 
@@ -153,6 +189,7 @@ body {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	font-size: 2rem;
 	&__Sunrise {
 	}
 	&__Sunset {
@@ -168,18 +205,94 @@ body {
 
 	&__dayOne {
 		@include gridBoxStyles;
+		@include dayWeatherBoxStyles;
+		&__weatherInfo {
+			
+			&--WeatherCondition {
+				@include daysWeatherWeatherConditionStyles;
+			}
+			&--date {
+				@include daysWeatherDateStyles;
+			}
+			&--temp {
+				@include daysWeatherTempStyles;
+			}
+		}
+		&__icon {
+			@include daysWeatherIconStyles;
+		}
 	}
 	&__dayTwo {
 		@include gridBoxStyles;
+		@include dayWeatherBoxStyles;
+		&__weatherInfo {
+			&--WeatherCondition {
+				@include daysWeatherWeatherConditionStyles;
+			}
+			&--date {
+				@include daysWeatherDateStyles;
+			}
+			&--temp {
+				@include daysWeatherTempStyles;
+			}
+		}
+		&__icon {
+			@include daysWeatherIconStyles;
+		}
 	}
 	&__dayThree {
 		@include gridBoxStyles;
+		@include dayWeatherBoxStyles;
+		&__weatherInfo {
+			&--WeatherCondition {
+				@include daysWeatherWeatherConditionStyles;
+			}
+			&--date {
+				@include daysWeatherDateStyles;
+			}
+			&--temp {
+				@include daysWeatherTempStyles;
+			}
+		}
+		&__icon {
+			@include daysWeatherIconStyles;
+		}
 	}
 	&__dayFour {
 		@include gridBoxStyles;
+		@include dayWeatherBoxStyles;
+		&__weatherInfo {
+			&--WeatherCondition {
+				@include daysWeatherWeatherConditionStyles;
+			}
+			&--date {
+				@include daysWeatherDateStyles;
+			}
+			&--temp {
+				@include daysWeatherTempStyles;
+			}
+		}
+		&__icon {
+			@include daysWeatherIconStyles;
+		}
 	}
 	&__dayFive {
 		@include gridBoxStyles;
+		@include dayWeatherBoxStyles;
+		&__weatherInfo {
+			&--WeatherCondition {
+				@include daysWeatherWeatherConditionStyles;
+			}
+			&--date {
+				@include daysWeatherDateStyles;
+			}
+			&--temp {
+				@include daysWeatherTempStyles;
+			}
+		}
+		&__icon {
+			@include daysWeatherIconStyles;
+		}
 	}
 	&__icon {
 		height: 8rem;

@@ -1,30 +1,61 @@
 import "./styles/main.scss";
 import Chart from "chart.js";
 
-////// API CALL /////
+//// API CALL /////
 
-// const apiKey = "c9e3c239980a443441df591c707917dc";
+const apiKey = "c9e3c239980a443441df591c707917dc";
 
-// const geoBtn = document.querySelector(".inputField__geo");
+const geoBtn = document.querySelector(".searchBar__inputField__geoBtn");
 
-// geoBtn.addEventListener("click", () => {
+
+geoBtn.addEventListener("click", () => {
+	let long;
+	let lat;
+
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition((position) => {
+			long = position.coords.longitude;
+			lat = position.coords.latitude;
+
+			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
+
+
+			async function getWeather() {
+				const result = await fetch(api);
+				const data = await result.json();
+				console.log(data);
+			}
+			getWeather();
+			console.log(api);
+
+		});
+
+	}
+});
+
+// const apiKey = 'c9e3c239980a443441df591c707917dc';
+
+// const geoBtn = document.querySelector('.searchBar__inputField__geoBtn');
+
+// geoBtn.addEventListener('click', () => {
 // 	let long;
 // 	let lat;
 
 // 	if (navigator.geolocation) {
-// 		navigator.geolocation.getCurrentPosition((position) => {
+// 		navigator.geolocation.getCurrentPosition(position => {
 // 			long = position.coords.longitude;
 // 			lat = position.coords.latitude;
 
 // 			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
 // 			// console.log(api);
 
-// 			async function getWeather() {
-// 				const result = await fetch(api);
-// 				const data = await result.json();
-// 				console.log(data);
-// 			}
-// 			getWeather();
+// 			fetch(api)
+// 				.then(response => {
+// 					return response.json();
+// 				})
+// 				.then(data => {
+// 					console.log(api);
+// 				});
 // 		});
 // 	}
 // });
@@ -34,8 +65,8 @@ import Chart from "chart.js";
 var ctx = document.getElementById("myChart").getContext("2d");
 
 Chart.defaults.global.defaultFontColor = "black";
-Chart.defaults.global.defaultFontFamily = "Carter One";
-Chart.defaults.global.defaultFontSize = 15;
+Chart.defaults.global.defaultFontFamily = "Fredoka One";
+Chart.defaults.global.defaultFontSize = 20;
 var myChart = new Chart(ctx, {
 	type: "line",
 	// prettier-ignore
@@ -44,12 +75,12 @@ var myChart = new Chart(ctx, {
 		datasets: [
 			{
 				label: "Temp:",
-				backgroundColor: "rgba(234,99,148,0.2)",
-				borderColor: "rgba(234,99,148,1)",
+				backgroundColor: "rgba(38,188,255, 0.7)",
+				borderColor: "rgb(0, 155, 224)",
 				borderWidth: 2,
 				// prettier-ignore
-				data: [22, 15, 5, 8, 18, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 15, 5, 8, 9],
-			},
+				data: [22, 20, 18, 16, 14, 12, 10, 8, 10, 12, 10, 8, 6, 4, 2, 1, 2, 3, 3, 3, 5, 7, 8, 9],
+			}
 		],
 	},
 	options: {
@@ -58,7 +89,7 @@ var myChart = new Chart(ctx, {
 			display: false,
 		},
 		tooltips: {
-			enabled: true,
+			enabled: false,
 		},
 		elements: {
 			point: {
@@ -70,9 +101,9 @@ var myChart = new Chart(ctx, {
 				{
 					gridLines: {
 						display: true,
-						color: "rgba(234,99,148,0.5)",
+						color: "rgb(93,205,255)",
 					},
-					scaleLabel: true,
+					scaleLabel: false,
 					ticks: {
 						display: true,
 					},
@@ -82,7 +113,7 @@ var myChart = new Chart(ctx, {
 				{
 					gridLines: {
 						display: true,
-						color: "rgba(234,99,148,0.5)",
+						color: "rgb(93,205,255)",
 					},
 					scaleLabel: true,
 					ticks: {
