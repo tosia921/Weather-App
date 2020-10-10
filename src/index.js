@@ -1,79 +1,37 @@
 import "./styles/main.scss";
 import Chart from "chart.js";
 
-//// API CALL /////
+import Getdata from './models/Getdata'
+import { elements } from './views/base'
+import { updateIcon } from './views/UpdateIcon'
 
-const apiKey = "c9e3c239980a443441df591c707917dc";
+const state = {};
 
-const geoBtn = document.querySelector(".searchBar__inputField__geoBtn");
-
-let setIcon = (id) => {
-
-}
-
-
-geoBtn.addEventListener("click", () => {
+const ControlGeoSearch = () => {
+	//1) Get lat and long using geolocation
 	let long;
 	let lat;
-	const CurrentWeatherCondition = document.querySelector('.currentWeather__info--WeatherCondition');
-	const CurrentDate = document.querySelector('.currentWeather__info--date');
-	const CurrentTemp = document.querySelector('.currentWeather__info--temp');
-
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition((position) => {
+		navigator.geolocation.getCurrentPosition(async (position) => {
 			long = position.coords.longitude;
 			lat = position.coords.latitude;
+			//2)new GetData object and added to state
+			state.getData = new Getdata(lat, long);
+			//3)Get Data from weather API
+			await state.getData.GetDataGeo();
 
-			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
-
-
-			fetch(api)
-				.then(response => {
-					return response.json();
-				})
-				.then(data => {
-					console.log(data);
-					const temp = Math.round(data.current.temp - 273.15) + "°C";
-					const description = data.current.weather[0].description;
-					const date = new Date().toDateString();
-					CurrentWeatherCondition.innerHTML = description;
-					CurrentDate.innerHTML = date;
-					CurrentTemp.innerHTML = temp;
-				});
+			updateIcon(state.getData.iconID, elements.CurrentIcon);
 		});
-	}
+
+	};
+};
+
+elements.GeoBtn.addEventListener("click", () => {
+	ControlGeoSearch();
+
+
 });
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-// const apiKey = 'c9e3c239980a443441df591c707917dc';
-
-// const geoBtn = document.querySelector('.searchBar__inputField__geoBtn');
-
-// geoBtn.addEventListener('click', () => {
-// 	let long;
-// 	let lat;
-
-// 	if (navigator.geolocation) {
-// 		navigator.geolocation.getCurrentPosition(position => {
-// 			long = position.coords.longitude;
-// 			lat = position.coords.latitude;
-
-// 			const api = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,alerts&appid=${apiKey}`;
-// 			// console.log(api);
-
-// 			fetch(api)
-// 				.then(response => {
-// 					return response.json();
-// 				})
-// 				.then(data => {
-// 					console.log(api);
-// 				});
-// 		});
-// 	}
-// });
 
 /////////////////// CHART CANVAS ////////////////////////
 
