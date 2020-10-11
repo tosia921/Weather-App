@@ -31,6 +31,8 @@ export const updateIcon = (iconID, iconDOM) => {
     } else if (iconID == 800) {
         iconDOM.src = clear;
     } else if (iconID == 801) {
+        iconDOM.src = partlySunny;
+    } else if (iconID == 802) {
         iconDOM.src = partlyCloudy;
     } else if (iconID == 803) {
         iconDOM.src = mostlyCloudy;

@@ -4,23 +4,28 @@ import Chart from "chart.js";
 import Getdata from './models/Getdata'
 import { elements } from './views/base'
 import { updateIcon } from './views/UpdateIcon'
+import { updateWeatherCurrent } from './views/UpdateWeather'
+import { updateChart } from './views/UpdateChart'
 
 const state = {};
+const chartData = [];
 
 const ControlGeoSearch = () => {
 	//1) Get lat and long using geolocation
-	let long;
-	let lat;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(async (position) => {
-			long = position.coords.longitude;
-			lat = position.coords.latitude;
+			let long = position.coords.longitude;
+			let lat = position.coords.latitude;
 			//2)new GetData object and added to state
 			state.getData = new Getdata(lat, long);
 			//3)Get Data from weather API
 			await state.getData.GetDataGeo();
-
+			//4)Update Current Weather Icon
 			updateIcon(state.getData.iconID, elements.CurrentIcon);
+			//5)Update Current Weather Data
+			updateWeatherCurrent(state.getData.description, state.getData.date, state.getData.temp);
+			console.log(state.getData.temp);
+
 		});
 
 	};
@@ -28,8 +33,6 @@ const ControlGeoSearch = () => {
 
 elements.GeoBtn.addEventListener("click", () => {
 	ControlGeoSearch();
-
-
 });
 
 
@@ -44,7 +47,7 @@ var myChart = new Chart(ctx, {
 	type: "line",
 	// prettier-ignore
 	data: {
-		labels: ["1h", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+		labels: ["1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h", "20h", "21h", "22h", "23h", "24h"],
 		datasets: [
 			{
 				label: "Temp:",
