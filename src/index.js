@@ -8,7 +8,7 @@ import { updateWeatherCurrent } from './views/UpdateWeather'
 import { updateChart } from './views/UpdateChart'
 
 const state = {};
-const chartData = [];
+
 
 const ControlGeoSearch = () => {
 	//1) Get lat and long using geolocation
@@ -24,8 +24,8 @@ const ControlGeoSearch = () => {
 			updateIcon(state.getData.iconID, elements.CurrentIcon);
 			//5)Update Current Weather Data
 			updateWeatherCurrent(state.getData.description, state.getData.date, state.getData.temp);
-			console.log(state.getData.temp);
-
+			//6) Updating Chart with weekly data
+			updateChart(state.getData.hours);
 		});
 
 	};
@@ -36,7 +36,7 @@ elements.GeoBtn.addEventListener("click", () => {
 });
 
 
-/////////////////// CHART CANVAS ////////////////////////
+/////////////////// EMPTY CHART TO BE DISPLAYED BEFORE FETCHING THE DATA ////////////////////////
 
 var ctx = document.getElementById("myChart").getContext("2d");
 
@@ -55,7 +55,7 @@ var myChart = new Chart(ctx, {
 				borderColor: "rgb(0, 155, 224)",
 				borderWidth: 2,
 				// prettier-ignore
-				data: [22, 20, 18, 16, 14, 12, 10, 8, 10, 12, 10, 8, 6, 4, 2, 1, 2, 3, 3, 3, 5, 7, 8, 9],
+				data: [],
 			}
 		],
 	},
