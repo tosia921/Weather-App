@@ -6,9 +6,12 @@ import { elements } from './views/base'
 import { updateIcon } from './views/UpdateIcon'
 import { updateWeatherCurrent } from './views/UpdateWeather'
 import { updateChart } from './views/UpdateChart'
+import { updateHumWindAir } from './views/UpdateHumWindAir'
+import { updateSun } from './views/UpdateSun'
+import { updateDailyIcons } from './views/UpdateDailyIcons'
+import { updateWeatherDaily } from './views/UpdateDailyWeather'
 
 const state = {};
-
 
 const ControlGeoSearch = () => {
 	//1) Get lat and long using geolocation
@@ -20,12 +23,27 @@ const ControlGeoSearch = () => {
 			state.getData = new Getdata(lat, long);
 			//3)Get Data from weather API
 			await state.getData.GetDataGeo();
+			console.log(state.getData);
 			//4)Update Current Weather Icon
 			updateIcon(state.getData.iconID, elements.CurrentIcon);
 			//5)Update Current Weather Data
 			updateWeatherCurrent(state.getData.description, state.getData.date, state.getData.temp);
 			//6) Updating Chart with weekly data
 			updateChart(state.getData.hours);
+			//7) Update Humidity, Air Pressure and Wind data
+			updateHumWindAir(state.getData.humidity, state.getData.pressure, state.getData.windSpeed);
+			//8) Update sunrise and sunset
+			updateSun(state.getData.sunrise, state.getData.sunset)
+			//9) Update Daily Icons
+			console.log(state.getData.daily[0].weather[0].id);
+			for (let i = 0; i < 5; i++) {
+				updateDailyIcons(state.getData.daily[i].weather[0].id, i);
+			}
+			//10) Update Daily Data
+			for (let i = 0; i < 5; i++) {
+				updateWeatherDaily(state.getData.daily[i].weather[0].description, state.getData.daily[i].dt, state.getData.daily[i].temp.day, i);
+				console.log(state.getData.daily[i].dt);
+			}
 		});
 
 	};
